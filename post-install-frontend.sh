@@ -18,22 +18,20 @@ sudo rm -rf $NGINX_AVAILABLE_VHOSTS/default
 sudo tee $NGINX_AVAILABLE_VHOSTS/$NGINX_DOMAIN_NAME > /dev/null <<EOF
 server {
         listen 80 default_server;
-        listen [::]:80 default_server;
 
         root /var/www/$NGINX_DOMAIN_NAME/html;
 
-        index index.html index.htm index.nginx-debian.html;
+        index index.html;
 
-        server_name $NGINX_DOMAIN_NAME www.$NGINX_DOMAIN_NAME;
+        server_name _;
 
         location / {
                 try_files $uri $uri/ =404;
         }
 }
-
 EOF
 
 sudo rm -rf $NGINX_ENABLED_VHOSTS/$NGINX_DOMAIN_NAME
 sudo ln -s $NGINX_AVAILABLE_VHOSTS/$NGINX_DOMAIN_NAME $NGINX_ENABLED_VHOSTS
-sudo sed -i 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 64;/' /etc/nginx/nginx.conf                                                                     c/nginx/nginx.conf
+sudo sed -i 's/# server_names_hash_bucket_size 64;/server_names_hash_bucket_size 64;/' /etc/nginx/nginx.conf
 sudo systemctl restart nginx
