@@ -1,5 +1,5 @@
 $subscription = "aimar-sandbox-ava"
-$environment = "cosmospoc-beta3"
+$environment = "cosmospoc-beta4"
 $Location = "West Europe"
 
 # log in to azure
@@ -15,4 +15,4 @@ New-AzureRmResourceGroup -Name $environment -Location $Location
 Test-AzureRmResourceGroupDeployment -ResourceGroupName $environment -TemplateFile "azuredeploy.json" -TemplateParameterFile "azuredeploy.parameters.json"
 
 # deployment
-New-AzureRmResourceGroupDeployment -Name "cosmospoc-deploy1312018" -ResourceGroupName $environment -TemplateFile "azuredeploy.json" -TemplateParameterFile "azuredeploy.parameters.json"
+New-AzureRmResourceGroupDeployment -Name "cosmospoc-deploy131" -ResourceGroupName $environment -TemplateFile "azuredeploy.json" -TemplateParameterFile "azuredeploy.parameters.json"
